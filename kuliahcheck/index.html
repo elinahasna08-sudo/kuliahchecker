@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KuliahCheck — Cek Kesiapan Kuliah</title>
+<meta name="description" content="Checklist harian sebelum berangkat kuliah: barang di tas, tugas, persiapan diri, dan perjalanan.">
+<meta name="theme-color" content="#FFC72C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎒%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Nunito:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="top"><span class="brand">🎒 KuliahCheck</span><span class="date" id="date"></span></div>
+  <h1 id="greet">Siap berangkat kuliah?</h1>
+  <div class="chips" id="modes" role="group" aria-label="Jenis hari ini"></div>
+</div></header>
+
+<div class="panel">
+  <div class="status" id="status" aria-live="polite">
+    <div class="ring" id="ring"><span id="emoji">🎒</span></div>
+    <div><h2 id="stTitle"></h2><p id="stSub"></p></div>
+  </div>
+  <label class="dep">Jam berangkat <input type="time" id="depart"> <span id="left"></span></label>
+  <div id="lists"></div>
+  <section>
+    <h3>Tambahan milikmu</h3>
+    <div id="customList"></div>
+    <div class="add"><input id="newText" placeholder="Contoh: pinjaman buku perpus" maxlength="60" aria-label="Barang tambahan"><button id="addBtn">Tambah</button></div>
+  </section>
+  <button class="reset" id="reset">Reset checklist hari ini</button>
+</div>
+
+<div class="bar"><div class="wrap">
+  <div class="meter"><b id="count"></b><div class="track"><i id="fill"></i></div></div>
+  <button class="go" id="go" disabled>Berangkat</button>
+</div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="script.js" defer></script>
+</body>
+</html>
