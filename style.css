@@ -1,18 +1,18 @@
-:root{--ink:#10204A;--bg:#EAF2FF;--card:#fff;--line:#D3E0F5;--sun:#FFC72C;--ok:#16A36A;--okbg:#DDF6EA;--muted:#5B6B8C;--tile:#F1F6FF}
-@media(prefers-color-scheme:dark){:root{--ink:#EAF0FF;--bg:#0E1730;--card:#17234A;--line:#2A3A6B;--okbg:#12362F;--muted:#9FB0D6;--tile:#1F2D5A}}
+:root{--ink:#0F2E1D;--bg:#EAF6EE;--card:#fff;--line:#CFE6D8;--hero:#42D77D;--hero-ink:#0B2A18;--ok:#15803D;--okbg:#DCF5E4;--muted:#4F6F5C;--tile:#F0F8F3;--bad:#B42318}
+@media(prefers-color-scheme:dark){:root{--ink:#E6F6EB;--bg:#08150E;--card:#10261A;--line:#21402F;--okbg:#133A26;--muted:#9CC4AB;--tile:#173023;--ok:#1F9D55;--bad:#F97066}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:600 16px/1.45 Nunito,system-ui,sans-serif;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
 h1,h2{font-family:'Bricolage Grotesque',Nunito,sans-serif;margin:0;line-height:1.05}
-.hero{background:var(--sun);color:#10204A;padding:calc(20px + env(safe-area-inset-top)) 20px 92px;border-radius:0 0 36px 36px}
+.hero{--chip-ink:var(--hero-ink);--chip-on:var(--hero);background:var(--hero);color:var(--hero-ink);padding:calc(20px + env(safe-area-inset-top)) 20px 92px;border-radius:0 0 36px 36px}
 .wrap{max-width:620px;margin:0 auto}
-.top{display:flex;justify-content:space-between;align-items:center;font-weight:700;margin-bottom:26px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:700;margin-bottom:26px}
 .brand{font:800 19px 'Bricolage Grotesque',sans-serif}
-.date{font-size:14px;opacity:.8}
+.date{font-size:14px;opacity:.85;text-align:right}
 h1{font-size:clamp(34px,9vw,50px);font-weight:800;letter-spacing:-.02em;max-width:12ch}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-.chip{border:2px solid #10204A;background:transparent;color:#10204A;border-radius:99px;padding:7px 15px;font:inherit;font-weight:700;cursor:pointer}
-.chip[aria-pressed=true]{background:#10204A;color:#FFC72C}
+.chip{border:2px solid var(--chip-ink);background:transparent;color:var(--chip-ink);border-radius:99px;padding:7px 15px;font:inherit;font-weight:700;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--chip-ink);color:var(--chip-on)}
 .panel{max-width:620px;margin:-64px auto 0;padding:0 16px}
 .status{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:18px;display:flex;align-items:center;gap:18px;transition:background .3s,border-color .3s}
 .status.done{background:var(--okbg);border-color:var(--ok)}
@@ -22,7 +22,7 @@ h1{font-size:clamp(34px,9vw,50px);font-weight:800;letter-spacing:-.02em;max-widt
 .status h2{font-size:23px;margin-bottom:4px}
 .status p{margin:0;color:var(--muted);font-size:15px}
 .dep{display:flex;align-items:center;gap:10px;margin:14px 4px 4px;color:var(--muted);font-size:15px}
-.dep input{font:inherit;font-weight:700;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:10px;padding:4px 8px}
+.dep input,.alarmcard select{font:inherit;font-weight:700;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:10px;padding:4px 8px;color-scheme:light dark}
 section{margin-top:26px}
 section h3{font:800 20px 'Bricolage Grotesque',sans-serif;margin:0 4px 10px;display:flex;justify-content:space-between;align-items:baseline}
 section h3 small{font:700 14px Nunito,sans-serif;color:var(--muted)}
@@ -40,7 +40,22 @@ section h3 small{font:700 14px Nunito,sans-serif;color:var(--muted)}
 .add{display:flex;gap:8px;margin-top:6px}
 .add input{flex:1;min-width:0;font:inherit;color:var(--ink);background:var(--card);border:2px dashed var(--line);border-radius:14px;padding:12px 14px}
 .add button,.go{font:inherit;font-weight:800;border:0;border-radius:14px;background:var(--ink);color:var(--bg);padding:12px 18px;cursor:pointer}
-.add input:focus-visible,.dep input:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.add input:focus-visible,.dep input:focus-visible,.alarmcard select:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.err{margin:6px 4px 0;min-height:1.3em;color:var(--bad);font-size:14px}
+
+/* alarm pengingat */
+.alarmcard{--chip-ink:var(--ink);--chip-on:var(--card);background:var(--card);border:2px solid var(--line);border-radius:24px;padding:16px}
+.alarmcard h3{margin-left:0;margin-right:0}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:15px}
+.alarmcard .chips{margin-top:12px}
+.alarmcard .chip{padding:6px 12px;font-size:14px}
+.hint{margin:14px 0 0;padding:10px 14px;background:var(--okbg);border-radius:14px;color:var(--ink)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btns>*{flex:1;min-width:150px}
+.ghost{font:inherit;font-weight:800;border-radius:14px;background:transparent;color:var(--ink);border:2px solid var(--line);padding:10px 16px;cursor:pointer}
+.ghost:hover{border-color:var(--ok)}
+.small{margin:12px 0 0;color:var(--muted);font-size:13px;font-weight:600}
+
 .bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:2px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
 .bar .wrap{display:flex;align-items:center;gap:14px}
 .meter{flex:1}
@@ -49,7 +64,8 @@ section h3 small{font:700 14px Nunito,sans-serif;color:var(--muted)}
 .track i{display:block;height:100%;width:0;background:var(--ok);border-radius:9px;transition:width .3s}
 .go{background:var(--ok);color:#fff}
 .go:disabled{background:var(--line);color:var(--muted);cursor:default}
-.reset{display:block;margin:30px auto 0;background:none;border:0;color:var(--muted);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer}
+.reset{display:block;margin:26px auto 0;background:none;border:0;color:var(--muted);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer}
 .toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:14px;opacity:0;pointer-events:none;transition:all .3s;font-weight:700;text-align:center;width:max-content;max-width:90vw}
-.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast button{margin-left:12px;background:none;border:0;border-bottom:2px solid currentColor;color:inherit;font:inherit;font-weight:800;cursor:pointer;padding:0}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
